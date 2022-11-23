@@ -27,14 +27,52 @@ async function deleteToDo(id) {
   return result.rows[0];
 }
 
-async function editToDo(id, updates) {
+async function editToDoTitle(id, updates) {
   const { to_do_title } = updates;
   const result = query(
     "UPDATE user_todos SET to_do_title = $1 WHERE todo_id = $2 RETURNING *;",
     [to_do_title, id]
   );
 
-  return result.rowsd;
+  return result.rows;
 }
 
-module.exports = { getAllUserToDos, createToDo, deleteToDo, editToDo };
+//===== EDIT ALL BITS OF TODO
+// async function editToDo(id, updates) {
+//   const { to_do_title, done, priority } = updates;
+//   const result = query(
+//     "UPDATE user_todos SET to_do_title = $1, done = $2, priority = $3 WHERE todo_id = $4 RETURNING *;",
+//     [to_do_title, done, priority, id]
+//   );
+
+//   return result.rows;
+// }
+
+// async function editToDoDone(id, updates) {
+//   const { done } = updates;
+//   const result = query(
+//     "UPDATE user_todos SET done = $1 WHERE todo_id = $2 RETURNING *;",
+//     [done, id]
+//   );
+
+//   return result.rows;
+// }
+
+// async function editToDoPriority(id, updates) {
+//   const { priority } = updates;
+//   const result = query(
+//     "UPDATE user_todos SET priority = $1 WHERE todo_id = $2 RETURNING *;",
+//     [priority, id]
+//   );
+
+//   return result.rows;
+// }
+
+module.exports = {
+  getAllUserToDos,
+  createToDo,
+  deleteToDo,
+  editToDoTitle,
+  //   editToDoPriority,
+  //   editToDoDone,
+};

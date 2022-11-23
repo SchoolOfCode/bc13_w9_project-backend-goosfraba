@@ -6,7 +6,9 @@ const {
   getAllUserToDos,
   createToDo,
   deleteToDo,
-  editToDo,
+  editToDoTitle,
+  //   editToDoPriority,
+  //   editToDoDone,
 } = require("../models/UserTodos.js");
 
 router.get("/", async function (req, res) {
@@ -25,9 +27,10 @@ router.delete("/:id", async function (req, res) {
   res.json({ success: true, payload: result });
 });
 
+//edit the title only
 router.patch("/:id", async function (req, res) {
   const editData = req.body;
-  const result = await editToDo(req.params.id, editData);
+  const result = await editToDoTitle(req.params.id, editData);
   res.json({ success: true, payload: result });
 });
 
