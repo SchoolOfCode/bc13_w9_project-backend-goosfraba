@@ -1,8 +1,9 @@
 const express = require("express");
 //const morgan = require("morgan");
 const app = express();
-const PORT = process.env.port || 3000;
+// const thisIsCrazy = require("./appListen");
 const cors = require("cors");
+// const PORT = process.env.port || 3001;
 
 //require our router here/import router here
 const userToDoRouter = require("./routes/userTodos");
@@ -13,8 +14,11 @@ app.use(express.json());
 
 //add our app.use routes here:
 
-app.listen(PORT, function () {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 app.use("/api/userToDos", userToDoRouter);
+
+module.exports = app;
+
+// app.listen(PORT, function () {
+//   console.log(`Server is running on port ${PORT}`);
+// })
